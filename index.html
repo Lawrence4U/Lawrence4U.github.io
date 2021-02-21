@@ -47,9 +47,9 @@ and open the template in the editor.
                             </div>
                         </th>
                         <th>
-                            <ul class="nav justify-content-end " style="margin-top:0px;">
-                                <li>
-
+                            <ul class="nav justify-content-end " style="margin-top:0px;" id="barra-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link barra-nav" id="mix" >Cambiar tabla</a>
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link barra-nav" href="#">Inicio</a>
@@ -58,7 +58,7 @@ and open the template in the editor.
                                   <a class="nav-link barra-nav" href="https://www.youtube.com">Youtube</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link barra-nav" href="Formulario.html">InicioSesion</a>
+                                  <a id= 'Sesion' class="nav-link barra-nav" href="Formulario.html" >Iniciar Sesion</a>
                                 </li>
                             </ul> 
                         </th>
@@ -72,16 +72,16 @@ and open the template in the editor.
             <table class="table-bordered table">
                 <thead>
                     <tr>
-                        <th align="center">Lorem</th> 
-                        <th align="center">ipsum</th> 
-                        <th align="center">dolor</th> 
+                        <th align="center" class="tabla-header" id="tabla-header">Lorem</th> 
+                        <th align="center" class="tabla-header">ipsum</th> 
+                        <th align="center" class="tabla-header">dolor</th> 
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td align="center">lkjashd</td>
                         <td align="center">laksdkjfhljksaf</td>
-                        <td align="center">masndfdfs</td>
+                        <td align="center" id>masndfdfs</td>
                     </tr>
                     <tr>
                         <td align="center"><p align="justify">Morbi ultricies mauris quis arcu ornare dapibus. Etiam luctus maximus arcu, eu posuere libero venenatis vel. Fusce porta eros id faucibus suscipit. Suspendisse maximus, dui non fermentum feugiat, felis ante ornare quam, vel lobortis est est in justo. Mauris enim nunc, consequat eu metus eget, tempus aliquam quam. Nam ut eros cursus, feugiat enim sed, pulvinar ligula. Quisque id nulla ac dui ultricies rutrum id eget arcu. Praesent et elit a arcu faucibus porta. Aliquam nisl dolor, cursus ac rutrum id, fermentum eu magna. Ut id ultrices arcu. Curabitur rutrum elementum nunc a pretium.  </p></td>
@@ -151,5 +151,33 @@ and open the template in the editor.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="InicioSesion.js"></script>    
+    <script>
+        function cambiarBarra(){
+            var barra = document.getElementById("barra-nav");
+            let html = '';
+            html += '<li class="nav-item"><a class="nav-link barra-nav" href="#">Inicio</a></li>'
+                      +'<li class="nav-item"><a class="nav-link barra-nav" href="https://www.youtube.com">Youtube</a></li>'
+                      +'<li class="nav-item"><a id= "Sesion" class="nav-link barra-nav" id="cerrar">Cerrar Sesión</a></li>';
+            barra.innerHTML = html;  
+        }  
+           
+        window.addEventListener('load', function () { 
+            fetch('http://localhost:8383/Practica2/db/datos.json') //'https://lawrence4u.github.io/db/datos.json' 
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('mix').addEventListener("click",function(){
+                    document.getElementById('tabla-header').textContent = data.informacionImportante;
+                });
+            })
+            .catch(error => console.error(error));
+            if(sessionStorage.getItem('iniciado')==='true'){
+               cambiarBarra();
+               sessionStorage.setItem('iniciado', 'false');
+            }
+        });
+          
+        
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 </html>
