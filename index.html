@@ -177,6 +177,31 @@ and open the template in the editor.
                sessionStorage.setItem('iniciado', 'false');
             }
         });
+
+        var user = {"name" : "alvaro", "last":"Lorenzo"};
+        fetch('https://lawrence4u.github.io/Users', {
+        	method : 'POST',
+        	body : JSON.stringify(user),
+        	headers : {
+        		'Content-type' : 'application/json',
+        		'Accept' : 'application/json'
+        	}
+        })
+        .then(res => {
+		    if(res.ok){
+		      //Si la respuesta se resolvió bien, procedemos a resolver la promesa Body
+		      return res.json();
+		    }else{
+		      throw res;
+		    }
+		  })
+		  //Suscribimos a la promesa Body
+		  .then(r => {
+		    //Una vez resuelta la última promesa, asignamos el valor de la respuesta a una variable JSON
+		    console.log(r);
+		  })
+		  //Errores de RED y respuestas KO
+		  .catch(e => console.log(e));
           
         
     </script>
