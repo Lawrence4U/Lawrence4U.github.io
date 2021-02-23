@@ -201,6 +201,30 @@ and open the template in the editor.
 		  })
 		  //Errores de RED y respuestas KO
 		  .catch(e => console.log(e));
+
+
+		fetch('https://1bc87e3d-9706-4799-a432-7bdc439b6f75.mock.pstmn.io', {
+        	method : 'GET',
+        	headers : {
+        		'Content-type' : 'application/json',
+        		'Accept' : 'application/json'
+        	}
+        })
+        .then(res => {
+		    if(res.ok){
+		      //Si la respuesta se resolvió bien, procedemos a resolver la promesa Body
+		      return res.json();
+		    }else{
+		      throw res;
+		    }
+		  })
+		  //Suscribimos a la promesa Body
+		  .then(r => {
+		    //Una vez resuelta la última promesa, asignamos el valor de la respuesta a una variable JSON
+		    document.getElementById('tabla-header').textContent = JSON.stringify(r);
+		  })
+		  //Errores de RED y respuestas KO
+		  .catch(e => console.log(e));
           
         
     </script>
