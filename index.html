@@ -178,10 +178,9 @@ and open the template in the editor.
             }
         });
 
-       /* var user = {"name" : "alvaro", "last":"Lorenzo"};
-        fetch('https://lawrence4u.github.io/Users', {
-        	method : 'POST',
-        	body : JSON.stringify(user),
+        var user = {"name" : "alvaro", "last":"Lorenzo"};
+        fetch('https://1bc87e3d-9706-4799-a432-7bdc439b6f75.mock.pstmn.io', {
+        	method : 'GET',
         	headers : {
         		'Content-type' : 'application/json',
         		'Accept' : 'application/json'
@@ -198,10 +197,10 @@ and open the template in the editor.
 		  //Suscribimos a la promesa Body
 		  .then(r => {
 		    //Una vez resuelta la última promesa, asignamos el valor de la respuesta a una variable JSON
-		    console.log(r);
+		    document.getElementById('tabla-header').textContent = r;
 		  })
 		  //Errores de RED y respuestas KO
-		  .catch(e => console.log(e));*/
+		  .catch(e => console.log(e));
           
         
     </script>
